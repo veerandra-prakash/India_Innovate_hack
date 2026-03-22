@@ -31,46 +31,7 @@ export default function Landing() {
             <a href="#impact" className="hover:text-[#2d6a4f] transition-colors">Impact</a>
           </div>
           <div className="flex items-center gap-3">
-            <div className="relative" ref={menuRef}>
-              <button
-                onClick={() => setShowLoginMenu(!showLoginMenu)}
-                className="px-5 py-2.5 text-sm font-medium text-[#2d6a4f] hover:text-[#1b4332] transition-colors flex items-center gap-1"
-              >
-                Sign In
-                <ChevronDown className={`w-4 h-4 transition-transform ${showLoginMenu ? 'rotate-180' : ''}`} />
-              </button>
-              {showLoginMenu && (
-                <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-xl shadow-lg border border-stone-200 py-2 z-50">
-                  <Link to="/login/resident" className="flex items-center gap-3 px-4 py-3 hover:bg-[#d8f3dc]/40 transition-colors">
-                    <div className="w-8 h-8 rounded-lg bg-[#d8f3dc] flex items-center justify-center">
-                      <Home className="w-4 h-4 text-[#2d6a4f]" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-stone-800">Resident</p>
-                      <p className="text-xs text-stone-400">Household login</p>
-                    </div>
-                  </Link>
-                  <Link to="/login/driver" className="flex items-center gap-3 px-4 py-3 hover:bg-[#52796f]/10 transition-colors">
-                    <div className="w-8 h-8 rounded-lg bg-[#52796f]/15 flex items-center justify-center">
-                      <Truck className="w-4 h-4 text-[#52796f]" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-stone-800">Driver</p>
-                      <p className="text-xs text-stone-400">Collection crew</p>
-                    </div>
-                  </Link>
-                  <Link to="/login/admin" className="flex items-center gap-3 px-4 py-3 hover:bg-[#1b4332]/10 transition-colors">
-                    <div className="w-8 h-8 rounded-lg bg-[#1b4332]/10 flex items-center justify-center">
-                      <Shield className="w-4 h-4 text-[#1b4332]" />
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-stone-800">Admin</p>
-                      <p className="text-xs text-stone-400">Municipality panel</p>
-                    </div>
-                  </Link>
-                </div>
-              )}
-            </div>
+            {/* Removed Sign In dropdown on landing page navbar per design request */}
             <Link to="/register" className="btn-primary text-sm py-2.5 px-5">
               Get Started
             </Link>
@@ -79,7 +40,7 @@ export default function Landing() {
       </nav>
 
       {/* Hero — full-width image */}
-      <section className="relative pt-16">
+      <section className="relative pt-24">
         <div className="relative h-[520px] lg:h-[600px] overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=1400&q=80"
@@ -103,9 +64,7 @@ export default function Landing() {
                   Start Contributing
                   <ArrowRight className="w-5 h-5" />
                 </Link>
-                <a href="#how-it-works" className="btn-secondary text-base px-8 py-3.5 border-white text-white hover:bg-white hover:text-[#1b4332]">
-                  Learn More
-                </a>
+                {/* Learn More removed per request */}
               </div>
             </div>
           </div>
@@ -196,27 +155,27 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* Impact Stats — image background */}
-      <section id="impact" className="relative py-20 px-6">
-        <img
-          src="https://images.unsplash.com/photo-1495556650867-99590cea3657?w=1400&q=80"
-          alt="Green environment"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-[#1b4332]/85" />
-        <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-white mb-2">Environmental Impact</h2>
-          <p className="text-stone-300 mb-12">Together, we are building a sustainable future</p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {/* Community Impact — image-driven section (replaces numeric overview) */}
+      <section id="impact" className="py-16 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-bold text-stone-900 mb-3">Community Impact</h2>
+            <p className="text-stone-500 mb-6 max-w-2xl mx-auto">See how EcoCircle helps neighbourhoods stay cleaner and more sustainable.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
             {[
-              { val: '12,000+', label: 'Households Connected' },
-              { val: '40%', label: 'Emission Reduction' },
-              { val: '95%', label: 'Segregation Accuracy' },
-              { val: '₹2.5L', label: 'Rewards Distributed' },
-            ].map((s, i) => (
-              <div key={i}>
-                <p className="text-4xl font-extrabold text-white">{s.val}</p>
-                <p className="text-stone-300 text-sm mt-1">{s.label}</p>
+              { img: 'https://picsum.photos/id/1011/800/600', title: 'Cleaner Streets', desc: 'Regular pickups and better reporting keep streets free of litter and hazards.' },
+              { img: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=800&q=80', title: 'More Recycling', desc: 'Improved segregation and incentives increase recycling and reduce landfill waste.' },
+              { img: 'https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=800&q=80', title: 'Lower Emissions', desc: 'Optimized routes mean fewer vehicle miles and a smaller carbon footprint.' },
+            ].map((c, i) => (
+              <div key={i} className="card overflow-hidden group">
+                <div className="h-56 overflow-hidden">
+                  <img src={c.img} alt={c.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div className="p-6 text-center">
+                  <h3 className="text-lg font-bold text-stone-900 mb-2">{c.title}</h3>
+                  <p className="text-sm text-stone-500 leading-relaxed">{c.desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -289,11 +248,7 @@ export default function Landing() {
               <span className="text-white font-bold">EcoCircle</span>
             </div>
             <p className="text-sm">Circular Waste Intelligence System &copy; {new Date().getFullYear()}</p>
-            <div className="flex gap-6 text-sm">
-              <span className="hover:text-white cursor-pointer transition-colors">Privacy</span>
-              <span className="hover:text-white cursor-pointer transition-colors">Terms</span>
-              <span className="hover:text-white cursor-pointer transition-colors">Contact</span>
-            </div>
+            <div />
           </div>
         </div>
       </footer>
