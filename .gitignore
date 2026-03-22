@@ -30,3 +30,11 @@ npm-debug.log*
 *.sw?
 *.local
 Thumbs.db
+
+# Mobile / secret files
+client/android/local.properties
+google-services.json
+*.jks
+*.keystore
+client/.env*
+server/.env
